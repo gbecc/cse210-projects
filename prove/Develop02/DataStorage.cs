@@ -72,7 +72,7 @@ class DataStorage
             {
                 string prompt = line; // Read prompt
                 string response = reader.ReadLine(); // Read response
-                reader.ReadLine(); // Read separator line (---), ignore it
+                reader.ReadLine(); // Read separator line (----------), ignore it
 
                 prompts.Add(prompt);
                 responses.Add(response);
