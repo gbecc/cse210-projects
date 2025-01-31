@@ -2,8 +2,12 @@ using System;
 
 class Program
 {
+    
     static void Main()
     {
+        Prompts promptVar = new Prompts();
+        DataStorage dataVar = new DataStorage();
+
         int choiceNumber = 6;
 
         while (choiceNumber != 5)
@@ -16,25 +20,37 @@ class Program
             Console.WriteLine("5: Quit.");
             Console.Write("What would you like to do? ");
 
-            // Read user input and convert it to an integer
+            // Condition - if can be parsed, true and continue, else send error and repeat loop.
             if (int.TryParse(Console.ReadLine(), out choiceNumber))
             {
                 switch (choiceNumber)
                 {
                     case 1:
-                        Console.WriteLine("Option 1 selected: Write in your journal.");
+                        string randomPrompt = promptVar.GetRandomPrompt();
+                        Console.WriteLine($"{randomPrompt}");
+                        string userResponse = Console.ReadLine();
+                        dataVar.AddEntry(randomPrompt, userResponse);
+                        // Have to pull a random prompt, store the prompt and entry in DataStorage as active.
+                        //Create list in DataStorage for Prompts.
+                        //Create list in DataStorage for entries.
                         break;
 
                     case 2:
-                        Console.WriteLine("Option 2 selected: Display entries.");
+                        Console.WriteLine("Journal Entries:");
+                        dataVar.DisplayEntries();
+                        // Be able to display the journal entries.
                         break;
 
                     case 3:
                         Console.WriteLine("Option 3 selected: Save entries.");
+                        dataVar.SaveEntries();
+                        // Save the active entries to a file using DataStorage.
                         break;
 
                     case 4:
                         Console.WriteLine("Option 4 selected: Load entries.");
+                        dataVar.LoadEntries();
+                        // Load file's contents as the active entry using DataStorage.
                         break;
 
                     case 5:
