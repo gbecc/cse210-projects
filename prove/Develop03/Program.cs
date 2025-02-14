@@ -2,8 +2,10 @@ using System;
 
 class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
-        Console.WriteLine("Hello Develop03 World!");
+        // Initialize and start the scripture memorization game
+        MemorizationGame game = new MemorizationGame();
+        game.Start();
     }
 }
