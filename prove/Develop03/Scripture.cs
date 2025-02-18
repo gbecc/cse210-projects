@@ -8,41 +8,50 @@ class Scripture
     private string activeScripture;
     private List<string> words;
     private Random random;
+    private ScriptureReference reference;
 
-    public Scripture(string text)
+    public Scripture(string text, ScriptureReference refInfo)
     {
         activeScripture = text;
-        words = Regex.Split(text, @"(\s+)").ToList(); // Preserves spaces, will splitthe words into array
+        reference = refInfo;
+        words = Regex.Split(text, @"(\s+)").ToList();
         random = new Random();
     }
 
     public string GetActiveScripture()
     {
-        return string.Join("", words);
+        return $"{reference.GetFormattedReference()}: {string.Join("", words)}";
     }
 
     public void SetActiveScripture(string newText)
     {
         activeScripture = newText;
-        words = Regex.Split(newText, @"(\s+)").ToList(); //could use split(' ') but best explanations I found used regex.split
+        words = Regex.Split(newText, @"(\s+)").ToList();
     }
 
     public void WordSubstitution()
     {
-        var wordIndexes = words
-            .Select((word, index) => new { Word = word, Index = index })
-            .Where(w => w.Word.All(char.IsLetter)) //selects each word along with its index and extracts only the index values (then converting the indexes to a list)
-            .Select(w => w.Index)
-            .ToList();
+        var validIndexes = new List<int>();
+        for (int i = 0; i < words.Count; i++)
+        {
+            // only hide words containing letters and not already hidden
+            if (words[i].All(char.IsLetter) && words[i] != new string('_', words[i].Length))
+            {
+                validIndexes.Add(i);
+            }
+        }
 
-        if (wordIndexes.Count == 0) return;
-
-        int indexToHide = wordIndexes[random.Next(wordIndexes.Count)];
-        words[indexToHide] = new string('_', words[indexToHide].Length);
+        // hide a random word
+        if (validIndexes.Count > 0)
+        {
+            int indexToHide = validIndexes[random.Next(validIndexes.Count)];
+            words[indexToHide] = new string('_', words[indexToHide].Length);
+        }
     }
 
     public bool AllWordsHidden()
     {
+        // check if all words are hidden
         return words.All(word => !word.Any(char.IsLetter));
     }
 }
