@@ -34,7 +34,7 @@ class Scripture
         var validIndexes = new List<int>();
         for (int i = 0; i < words.Count; i++)
         {
-            // only hide words containing letters and not already hidden
+            // only hide words containing letters and those that are not already hidden
             if (words[i].All(char.IsLetter) && words[i] != new string('_', words[i].Length))
             {
                 validIndexes.Add(i);

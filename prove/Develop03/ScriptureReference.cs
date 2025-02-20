@@ -17,13 +17,15 @@ public class ScriptureReference
 
     public string GetFormattedReference()
     {
+        //quick and simple formatting
         return $"{_book} {_chapter}:{_verse}";
     }
     private void SetBook(string book)
     {
         if (string.IsNullOrWhiteSpace(book))
         {
-            throw new ArgumentException("Book name cannot be empty.");
+            //prevents empty values
+            throw new ArgumentException("Book name cannot be empty."); 
         }
         _book = book;
     }
@@ -32,7 +34,8 @@ public class ScriptureReference
     {
         if (chapter <= 0)
         {
-            throw new ArgumentOutOfRangeException(nameof(chapter), "Chapter number must be positive.");
+            throw new ArgumentOutOfRangeException(nameof(chapter), "Chapter number must be positive."); 
+            //no negative values
         }
         _chapter = chapter;
     }
@@ -41,7 +44,8 @@ public class ScriptureReference
     {
         if (verse <= 0)
         {
-            throw new ArgumentOutOfRangeException(nameof(verse), "Verse number must be positive.");
+            throw new ArgumentOutOfRangeException(nameof(verse), "Verse number must be positive."); 
+            //no negative values
         }
         _verse = verse;
     }
