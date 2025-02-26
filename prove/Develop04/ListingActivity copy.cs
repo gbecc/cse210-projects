@@ -22,7 +22,7 @@ class ListingActivity : MindfulnessProgram
     public void GetPrompt()
     {
         Random rand = new Random();
-        int index = rand.Next(listingPrompts.Count);
+        int index = rand.Next(listingPrompts.Count);// Generates a random integer between 0 and the max count from the prompts.
         Console.WriteLine(listingPrompts[index]);
         Spinner();
     }
@@ -36,7 +36,7 @@ class ListingActivity : MindfulnessProgram
         {
             Console.Write("> ");
             string response = Console.ReadLine();
-            if (!string.IsNullOrEmpty(response))
+            if (!string.IsNullOrEmpty(response))//does not add empty responses
             {
                 userResponses.Add(response);
             }
