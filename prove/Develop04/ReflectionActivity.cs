@@ -34,8 +34,8 @@ class ReflectionActivity : MindfulnessProgram
     public void GetReflectionPrompt()
     {
         Random rand = new Random();
-        int index = rand.Next(reflectionPrompts.Count);
-        Console.WriteLine($"\nConsider the following prompt:\n- {reflectionPrompts[index]}\n");
+        int index = rand.Next(reflectionPrompts.Count); // Generates a random integer between 0 and the max count from the questions.
+        Console.WriteLine($"\nConsider the following prompt:\n- {reflectionPrompts[index]}\n");//chooses prompt based off of previous number.
         Console.WriteLine("When you have something in mind, press Enter to continue...");
         Console.ReadLine();
     }
@@ -43,8 +43,8 @@ class ReflectionActivity : MindfulnessProgram
     public void ShowReflectionQuestion()
     {
         Random rand = new Random();
-        int index = rand.Next(reflectionQuestions.Count);
-        Console.WriteLine($"\nReflect on this question:\n- {reflectionQuestions[index]}");
+        int index = rand.Next(reflectionQuestions.Count); // Generates a random integer between 0 and the max count from the questions.
+        Console.WriteLine($"\nReflect on this question:\n- {reflectionQuestions[index]}"); //chooses question based off of previous number.
         Spinner();
     }
 
@@ -64,7 +64,7 @@ class ReflectionActivity : MindfulnessProgram
         {
             ShowReflectionQuestion();
 
-            // Shuffle questions if all have been used
+            // If the list is empty, gives it a new list with questions. This helps also in case all the questions have been gone through, by giving a new list.
             if (reflectionQuestions.Count == 0)
             {
                 reflectionQuestions = new List<string>
