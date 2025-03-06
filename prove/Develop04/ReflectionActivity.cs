@@ -34,7 +34,7 @@ class ReflectionActivity : MindfulnessProgram
     public void GetReflectionPrompt()
     {
         Random rand = new Random();
-        int index = rand.Next(reflectionPrompts.Count); // Generates a random integer between 0 and the max count from the questions.
+        int index = rand.Next(reflectionPrompts.Count); // Generates a random integer between 0 and the max count from the prompts.
         Console.WriteLine($"\nConsider the following prompt:\n- {reflectionPrompts[index]}\n");//chooses prompt based off of previous number.
         Console.WriteLine("When you have something in mind, press Enter to continue...");
         Console.ReadLine();
