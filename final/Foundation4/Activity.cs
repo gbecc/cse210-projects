@@ -14,7 +14,7 @@ public class Activity
     public DateTime GetDate() => _date;
     public int GetDuration() => _duration;
 
-    public virtual double GetDistance() => 0;
+    public virtual double GetDistance() => 0; //same as return 0, just prettier
     public virtual double GetPace() => 0;
     public virtual double GetSpeed() => 0;
 
