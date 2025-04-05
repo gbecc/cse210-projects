@@ -27,6 +27,6 @@ public class Event
 
     public virtual string GetShortDescription()
     {
-        return $"Event Type: {this.GetType().Name}\nTitle: {_title}\nDate: {_date}";
+        return $"Event Type: {GetType().Name}\nTitle: {_title}\nDate: {_date}";
     }
 }
